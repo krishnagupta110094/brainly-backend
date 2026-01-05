@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
-
-const tokenSecret = "123456789abcdef";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Signup controller
 export const signup = async (req: any, res: any) => {
@@ -66,9 +66,13 @@ export const signin = async (req: any, res: any) => {
       });
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is not defined");
+    }
+
     const token = jwt.sign(
       { id: user._id, username: user.username },
-      tokenSecret,
+      process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 

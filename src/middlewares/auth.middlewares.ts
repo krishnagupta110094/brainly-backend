@@ -16,7 +16,7 @@ export const authenticate = (
   const token = authHeader.split(" ")[1] as string;
 
   try {
-    const secret = "123456789abcdef"; // use env variable in production
+    const secret = process.env.JWT_SECRET; // use env variable in production
     if (!secret) {
       throw new Error("JWT_SECRET is not defined in .env");
     }
