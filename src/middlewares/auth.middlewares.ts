@@ -22,6 +22,7 @@ export const authenticate = (
     }
 
     const decoded = jwt.verify(token, secret) as JwtPayload;
+    // console.log("decoded", decoded);
     //@ts-ignore
     req.user = decoded; // Attach decoded token to request
     next();

@@ -15,8 +15,8 @@ app.use(express.json());
 connectDB();
 
 //Auth routes
-app.use(authRoute);
-app.use(contentRoute);
+app.use("/api/v1", authRoute);
+app.use("/api/v1", contentRoute);
 
 app.get("/", (req, res) => {
   res.send("API is running...");

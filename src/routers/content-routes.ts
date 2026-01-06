@@ -4,14 +4,19 @@ import {
   createContent,
   deleteContent,
   getContents,
+  shareContent,
+  shareContentLink,
   updateContent,
 } from "../controllers/content.contollers.js";
 
 const router = express.Router();
 
-router.post("/api/v1/content", authenticate, createContent);
-router.get("/api/v1/content", authenticate, getContents);
-router.delete("/api/v1/content/:id", authenticate, deleteContent);
-router.patch("/api/v1/content/:id", authenticate, updateContent);
+router.post("/content", authenticate, createContent);
+router.get("/content", authenticate, getContents);
+router.delete("/content/:id", authenticate, deleteContent);
+router.patch("/content/:id", authenticate, updateContent);
+
+router.post("/brain/share", authenticate, shareContent);
+router.get("/brain/:shareLink", shareContentLink);
 
 export default router;
