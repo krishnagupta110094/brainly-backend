@@ -7,12 +7,7 @@ const contentSchema = new mongoose.Schema({
   link: {
     type: String,
   },
-  tags: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tag",
-    },
-  ],
+  type: String,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

@@ -5,13 +5,13 @@ import User from "../models/user.model.js";
 
 export const createContent = async (req: any, res: any) => {
   try {
-    const { title, link } = req.body;
+    const { title, link, type } = req.body;
     const userId = req.user.id;
     // create new content
     const newContent = await Content.create({
       title,
       link,
-      tags: [],
+      type,
       userId,
     });
     res
@@ -50,16 +50,16 @@ export const updateContent = async (req: any, res: any) => {
   try {
     const contentId = req.params.id;
     const userId = req.user.id;
-    const { title, link, tags } = req.body;
+    const { title, link, type } = req.body;
     // Validate input
-    if (!title && !link && !tags) {
+    if (!title && !link && !type) {
       return res.status(400).json({
-        message: "At least one field (title, link, tags) is required",
+        message: "At least one field (title, link, type) is required",
       });
     }
     const content = await Content.findOneAndUpdate(
       { _id: contentId, userId },
-      { $set: { title, link, tags } },
+      { $set: { title, link, type } },
       { new: true }
     );
     if (!content) {
