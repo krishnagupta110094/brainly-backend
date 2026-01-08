@@ -40,9 +40,13 @@ export const deleteContent = async (req: any, res: any) => {
     if (!content) {
       return res
         .status(404)
-        .json({ message: "Content not found or unauthorized" });
+        .json({ success: false, message: "Content not found or unauthorized" });
     }
-    res.status(200).json({ message: "Content deleted successfully", content });
+    res.status(200).json({
+      success: true,
+      message: "Content deleted successfully",
+      content,
+    });
   } catch (error) {}
 };
 
